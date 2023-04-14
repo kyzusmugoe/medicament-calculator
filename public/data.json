@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Hydrocortisone",
+        "day": 0.25
+    },
+    {
+        "name": "Cortisone",
+        "day": 0.2
+    },
+    {
+        "name": "Prednisolone",
+        "day": 1
+    },
+    {
+        "name": "Triamcinolone",
+        "day": 1.25
+    },
+    {
+        "name": "Methylprednisolone",
+        "day": 1.25
+    },
+    {
+        "name": "Dexamethasone",
+        "day": 6.67
+    },
+    {
+        "name": "Betamethasone",
+        "day": 8.33
+    },
+    {
+        "name": "Fludrocortisone",
+        "day": 2.5
+    }
+]
