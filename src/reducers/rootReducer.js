@@ -21,8 +21,17 @@ const getNowDate = () => {
 }
 */
 
+
+const basicData = {
+    patientName:"",
+    patientAge:18,
+    patientSex:"",
+    patientSN:"",
+    patientKg:0,
+}
 const initState = {
     name:"Med",
+    basicData:basicData,
     jsonData:[],
     userRaw:[]
 }
@@ -33,14 +42,24 @@ let rootReducer = (state = initState, action) => {
         //紀錄所屬營業處，產壽險登錄證號
         case "SET_JSON_DATA":
             return { ...state, jsonData: action.jsonData }
+        case "SET_BASIC_DATA":
+            return { 
+                ...state,
+                basicData: action.basicData              
+            }
         case "SET_USER_RAW":
-            
             return { 
                 ...state,
                 userRaw:[
                     ...state.userRaw,
                     action.userRaw
                 ]
+            }
+
+        case "CLEAN_USER_RAW":
+            return { 
+                ...state,
+                userRaw:[]
             }
         default:
             return state

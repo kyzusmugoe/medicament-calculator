@@ -47,12 +47,12 @@ const styles = StyleSheet.create({
     },
     table: {
         width: "100%",
-        backgroundColor: "#000",
-        paddingRight: 1,
-        paddingBottom: 1
+        //backgroundColor: "#000",
+        //paddingRight: 1,
+        //paddingBottom: 1
     },
     tr: {
-        backgroundColor: "#000",
+        //backgroundColor: "#000",
         flexDirection: "row",
         //marginTop:-1,
         //borderTopWidth:1,
@@ -61,12 +61,16 @@ const styles = StyleSheet.create({
     },
     td: {
         //borderRightWidth:1,
-        backgroundColor: "#fff",
+        //backgroundColor: "#fff",
+        borderWidth:1,
+        borderColor:"#000",
+
         flexGrow: 1,
         fontSize: 10,
-        marginTop: 1,
-        marginLeft: 1,
-        padding: 1
+        marginTop: 0,
+        marginLeft: 0,
+        padding: 5,
+        textAlign:"center"
     },
 });
 
@@ -107,23 +111,25 @@ const ResPDF = ({ data }) => {
         <Page size="A4" style={styles.page}>
             <View>
                 <View style={stylesHader} >
+                    {/** 
+                     * 
                     <View style={stylesHader.section}>
                         <Image style={stylesHader.logo} src="./assets/logo.jpg" />
                     </View>
+                    */}
                     <View style={stylesHader.section} wrap>
-                        <Text style={stylesHader.text}>產出報告</Text>
+                        <Text style={stylesHader.text}>STEROID CALCULATOR</Text>
                     </View>
                 </View>
                 <View style={styles.table} >
-                    
+
                     <View style={styles.tr} >
-                        <View style={{ ...styles.td, width: "100%" }} >
-                            <Text >Report</Text>
+                        <View style={{ width: "100%" }} >
                             <View style={styles.tr} >
-                                <View style={{ ...styles.td, width: "33%" }} >
+                                <View style={{ ...styles.td, width: "33%",  borderRight:"none" }} >
                                     <Text >日期</Text>
                                 </View>
-                                <View style={{ ...styles.td, width: "33%" }} >
+                                <View style={{ ...styles.td, width: "33%",  borderRight:"none" }} >
                                     <Text >實際使用藥物</Text>
                                 </View>
                                 <View style={{ ...styles.td, width: "33%" }} >
@@ -134,25 +140,25 @@ const ResPDF = ({ data }) => {
                                 rawData.map((item, index)=>{
                                     return(
                                         <View style={styles.tr} >
-                                            <View style={{ ...styles.td, width: "12%" }} >
+                                            <View style={{ ...styles.td, width: "12%" , borderTop:"none",  borderRight:"none"}} >
                                                 <Text>{item.startDate}</Text>
                                             </View>
-                                            <View style={{ ...styles.td, width: "4%" }} >
+                                            <View style={{ ...styles.td, width: "4.3%" , borderTop:"none",  borderRight:"none"}} >
                                                 <Text>~</Text>
                                             </View>
-                                            <View style={{ ...styles.td, width: "12%" }} >
+                                            <View style={{ ...styles.td, width: "12%" , borderTop:"none",  borderRight:"none"}} >
                                                 <Text>{item.endDate}</Text>
                                             </View>
-                                            <View style={{ ...styles.td, width: "15%" }} >
+                                            <View style={{ ...styles.td, width: "15%" , borderTop:"none",  borderRight:"none"}} >
                                                 <Text>{item.med}</Text>
                                             </View>
-                                            <View style={{ ...styles.td, width: "15%" }} >
+                                            <View style={{ ...styles.td, width: "15%" , borderTop:"none",  borderRight:"none"}} >
                                                 <Text>{item.mg}mg</Text>
                                             </View>
-                                            <View style={{ ...styles.td, width: "15%" }} >
+                                            <View style={{ ...styles.td, width: "15%" , borderTop:"none",  borderRight:"none"}} >
                                                 <Text>{item.mgday}mg/day</Text>
                                             </View>
-                                            <View style={{ ...styles.td, width: "15%" }} >
+                                            <View style={{ ...styles.td, width: "15%" , borderTop:"none"}} >
                                                 <Text>{item.mgkgday}mg/kg/day</Text>
                                             </View>
                                         </View>

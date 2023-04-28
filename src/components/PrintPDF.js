@@ -19,21 +19,28 @@ const PrintPDF = ( {data}) => {
             setRawData(jsonData.userRaw)
         }
     },[jsonData]) 
+    
     return(
-        <PDFDownloadLink
-            document={
-                <PDFfactory data={rawData} />
-            }
+        <>
+            <PDFDownloadLink
+                document={
+                    <PDFfactory data={rawData} />
+                }
                 fileName="somename.pdf"
-        >
-            {
-
-                ({ blob, url, loading, error }) => (
-                    loading ? 'Loading document...' : <button target="_blank">下載PDF</button>
-                )
-
-            }
-        </PDFDownloadLink>
+                >
+                {   
+                    ({ blob, url, loading, error }) => (
+                        loading ? '處理中...' : <button target="_blank">下載PDF</button>
+                    )       
+                }
+            </PDFDownloadLink>
+            <PDFViewer
+                width={800}
+                height={1200}
+            >
+                <PDFfactory data={rawData} />    
+            </PDFViewer>
+        </>
     )
 }
 export default PrintPDF

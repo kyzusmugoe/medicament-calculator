@@ -3,20 +3,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import PrintPDF from './PrintPDF';
 import styled from 'styled-components'
 
+const FooterBtns = styled('div')`
+    @media print
+    {    
+        display: none !important;
+        
+    }
+`
 const MyApp = ( {changeState, data}) => {
-    
-    
+       
     const [state, setState] = useState("L")
 
-    const FooterBtns = styled('div')`
-        @media print
-        {    
-            display: none !important;
-            
-        }
-    `
     
     if(state == "L"){
+        /*
         return(
             <div>
                 <button onClick={()=>{ 
@@ -24,7 +24,7 @@ const MyApp = ( {changeState, data}) => {
                     changeState("result")
                 }}>結束</button>
             </div>
-        )
+        )*/
     }else{
         return(
             <FooterBtns>
