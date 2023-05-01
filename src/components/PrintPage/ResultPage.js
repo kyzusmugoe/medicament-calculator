@@ -88,7 +88,6 @@ const ResultPage = ({back, }) => {
                     >列印報告</button>
             </FooterBox>
             {/**
-             * 
             <PrintPDF preview={true}/>
              */}
         </ResultBox>
