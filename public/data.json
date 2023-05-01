@@ -1,34 +1,35 @@
 [
     {
-        "name": "Hydrocortisone",
-        "day": 0.25
+        "label": "Hydrocortisone",
+        "value": 0.25
+
     },
     {
-        "name": "Cortisone",
-        "day": 0.2
+        "label": "Cortisone",
+        "value": 0.2
     },
     {
-        "name": "Prednisolone",
-        "day": 1
+        "label": "Prednisolone",
+        "value": 1
     },
     {
-        "name": "Triamcinolone",
-        "day": 1.25
+        "label": "Triamcinolone",
+        "value": 1.25
     },
     {
-        "name": "Methylprednisolone",
-        "day": 1.25
+        "label": "Methylprednisolone",
+        "value": 1.25
     },
     {
-        "name": "Dexamethasone",
-        "day": 6.67
+        "label": "Dexamethasone",
+        "value": 6.67
     },
     {
-        "name": "Betamethasone",
-        "day": 8.33
+        "label": "Betamethasone",
+        "value": 8.33
     },
     {
-        "name": "Fludrocortisone",
-        "day": 2.5
+        "label": "Fludrocortisone",
+        "value": 2.5
     }
 ]

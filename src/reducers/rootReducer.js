@@ -24,10 +24,10 @@ const getNowDate = () => {
 
 const basicData = {
     patientName:"",
-    patientAge:18,
-    patientSex:"",
+    patientAge:undefined,
+    patientSex:null,
     patientSN:"",
-    patientKg:0,
+    patientKg:null,
 }
 const initState = {
     name:"Med",

@@ -1,6 +1,6 @@
 {
   "homepage": "./",
-  "name": "hib-sign",
+  "name": "medicament-calculator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,12 +10,13 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
-    "@unicef/material-ui-currency-textfield": "^0.8.6",
+    "antd": "^5.4.6",
     "date-fns": "^2.29.3",
     "encrypt-decrpt-pdf": "^1.0.11",
     "file-saver": "^2.0.5",
     "pdfjs-dist": "^3.4.120",
     "react": "^18.2.0",
+    "react-datepicker": "^4.11.0",
     "react-dom": "^18.2.0",
     "react-ga": "^3.3.1",
     "react-pdf": "^6.2.2",
@@ -23,6 +24,7 @@
     "react-script-hook": "^1.7.2",
     "react-scripts": "5.0.1",
     "react-scroll": "^1.8.9",
+    "react-select": "^5.7.2",
     "react-signature-canvas": "^1.0.6",
     "redux": "^4.2.1",
     "styled-components": "^5.3.9"

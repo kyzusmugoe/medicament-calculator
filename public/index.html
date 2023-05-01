@@ -3,14 +3,20 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />    
+    <title>medicament-calculator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Web site created using create-react-app" />
     <style>
-       
+        @import url('https://fonts.googleapis.com/css2?family=Varela&display=swap');
+
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
+
         body,html {
-            height: 100%;
+            font-family: 'Roboto', sans-serif;
+            height: fit-content;
             margin: 0;
             
         }
@@ -29,8 +35,31 @@
             html {
                 width: 210mm;
                 height: 297mm;
-                margin: 40px;
+                margin-top: 20px;
             }
+            .ResTable{
+                width: 700px !important;
+                font-size: 15px;
+            }
+            
+            .ResTable th{
+                font-size: 15px  !important;
+                color:#000 !important;
+            }
+            .ResTable td{
+                font-size: 15px  !important;
+            }
+
+            .printPage{
+                padding:0 !important;
+                margin:0 !important;
+                width: 100%;
+                /*border: 1px solid #000;*/
+            }
+            .printPage button, .printPage a{
+                display: none !important
+            }
+
         }
     </style>
     <title>React App</title>

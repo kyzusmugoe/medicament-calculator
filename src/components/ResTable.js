@@ -5,20 +5,37 @@ import styled from 'styled-components'
 
 const MyTable = styled('table')`
     width: 100%;
-    max-width: 800px;
+    max-width: 1200px;
     border:1px solid #333;
     border-collapse: collapse;
     background-color: #fff;
-    th,td{
+    th, td{
         font-size: 1.2em;
         padding:10px;
         border:1px solid #ccc;
+        text-align: center;
     }
     th{
         width: 33.33%;
         color:#147189;
         font-weight: bolder;
         font-size: 1.2em;
+        
+        
+    }
+    td{
+        animation-name: fadeIn;
+        animation-duration: 600ms;
+        @keyframes fadeIn {
+            0%{ 
+                transform: translateY(-10px);
+                opacity:0
+            }
+            100%{ 
+                transform: translateY(0);
+                opacity:1
+            }
+        }
     }
 `
 
@@ -49,7 +66,7 @@ const ResTable =()=>{
 
     return(
         
-        <MyTable>
+        <MyTable className='ResTable'>
             <thead>
                     <tr>
                         <th colSpan={3}>日期</th>
@@ -78,13 +95,9 @@ const ResTable =()=>{
                     }
 
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>總共{totalDates}天</td>
-                        <td>總共劑量：{totalPrednisolnoe}</td>
+                        <td colSpan={3}>總共{totalDates}天</td>
+                        <td colSpan={2}></td>
+                        <td colSpan={2}>總共劑量：{totalPrednisolnoe}</td>
                     </tr>
                 </tbody>
         </MyTable>
