@@ -4,8 +4,9 @@ import { Page, Text, View, Image, StyleSheet, Font } from '@react-pdf/renderer';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import kaiu from "../../../font/kaiu.ttf"
 
+/*
+import kaiu from "../../../font/kaiu.ttf"
 Font.register({
     family: "kaiu",
     fonts:[
@@ -15,13 +16,16 @@ Font.register({
         }
     ]
 })
+*/
 
 
 // Create styles
 const styles = StyleSheet.create({
     page: {
         flexDirection: 'row',
-        fontFamily: 'kaiu',
+       // fontFamily: 'kaiu',
+        
+        fontFamily: 'NotoSerifTC2',
         padding: 15,
         lineHeight: 1.5
         
@@ -129,7 +133,7 @@ const ResPDF = ({ data }) => {
         <Page size="A4" style={styles.page} /*debug={true}*/>
             <View>
                 <View style={stylesHader.title}>
-                    <Text style={stylesHader.text}>STEROID CALCULATOR</Text>
+                    <Text style={stylesHader.text}>STEROID CONVERTER</Text>
                     <Text style={stylesHader.text}>數據產出報告</Text>
                 </View>
                 {
@@ -143,7 +147,7 @@ const ResPDF = ({ data }) => {
                             "尚未填寫"
                         }</Text>
                         <Text>病歷號碼：{basicData.patientSN?basicData.patientSN:"尚未填寫"}</Text>
-                        <Text>體重：{basicData.patientKg?basicData.patientKg:"尚未填寫"}</Text>            
+                        <Text>體重：{basicData.patientKg?basicData.patientKg+"kg":"尚未填寫"}</Text>            
                     </View>
                 }
                 <View style={styles.table} >
@@ -199,7 +203,7 @@ const ResPDF = ({ data }) => {
                                     <Text ></Text>
                                 </View>
                                 <View style={{ ...styles.td, width: "33%" }} >
-                                    <Text >總共劑量：{totalPrednisolnoe}</Text>
+                                    <Text >總共劑量：{totalPrednisolnoe.toFixed(2)}</Text>
                                 </View>
                             </View>
                         </View>

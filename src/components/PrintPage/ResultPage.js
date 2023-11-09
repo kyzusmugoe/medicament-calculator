@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import PrintPDF from '../PrintPDF';
 import ResTable from '../ResTable';
 
+
+
 const ResultBox = styled('div')`
     font-size:1.2em;
     display: flex;
@@ -21,6 +23,7 @@ const ResultBox = styled('div')`
         }
     }
 `
+
 const BasicView = styled('div')`
     display: flex;
     flex-direction: column;
@@ -28,6 +31,7 @@ const BasicView = styled('div')`
     width: 100%;
     max-width: 500px;
 `
+
 const FooterBox = styled('div')`
     width: 100%;
     max-width: 930px;
@@ -63,7 +67,7 @@ const ResultPage = ({back, }) => {
     return(
         <ResultBox className='printPage'>
             <div className='title'>
-                <p>STEROID CALCULATOR</p>
+                <p>STEROID CONVERTER</p>
                 <p>數據產出報告</p>
             </div>
             <BasicView>
@@ -75,17 +79,23 @@ const ResultPage = ({back, }) => {
                     "尚未填寫"
                 }</span>
                 <span>病歷號碼：{jsonData.basicData.patientSN?jsonData.basicData.patientSN:"尚未填寫"}</span>
-                <span>體重：{jsonData.basicData.patientKg?jsonData.basicData.patientKg:"尚未填寫"}</span>
+                <span>體重：{jsonData.basicData.patientKg?jsonData.basicData.patientKg+"kg":"尚未填寫"}</span>
             </BasicView>
             <ResTable />
             <FooterBox>
                 <button onClick={back}>
                     返回
                 </button>
+                
+                {
                 <PrintPDF/>
+                }
+
                 <button 
                     onClick={()=>{window.print()}}
-                    >列印報告</button>
+                    >
+                    列印報告
+                </button>
             </FooterBox>
             {/**
             <PrintPDF preview={true}/>

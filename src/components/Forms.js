@@ -6,7 +6,7 @@ import ResTable from './ResTable';
 
 
 import DatePicker from "react-datepicker";
-import Select from 'react-select';
+import Select,{ createFilter } from 'react-select';
 
 import "react-datepicker/dist/react-datepicker.css";
 //import type { DatePickerProps } from 'antd';
@@ -44,9 +44,7 @@ const RowBox = styled('div')`
             flex-direction: column;
             align-items: flex-start;
         }
-        .LBox{
-            
-            
+        .LBox{            
             color:#fff;
             flex: 0 0 calc(30% - 20px);
             text-align: right;
@@ -71,7 +69,6 @@ const RowBox = styled('div')`
             margin: 0;
             border: 0;
             font-size: 18px;
-           
         }
         &.notice{
             .RBox{
@@ -112,6 +109,7 @@ const RowBox = styled('div')`
         }
        
         .css-1im77uy-control{ height:44px}
+        
 
     }
     .tableBox{
@@ -133,20 +131,27 @@ const RowBox = styled('div')`
             top:20px
         }
         
-
+        
+        .react-datepicker__day{
+            border-radius: 50%;
+        }
         .react-datepicker__day-name, 
         .react-datepicker__day, 
         .react-datepicker__time-name {
             width: 2.7rem;
             line-height: 2.7rem;
         }
-        //.react-datepicker__day--keyboard-selected{
+        .react-datepicker__day--keyboard-selected{
+            background: #ccc;
+            border-radius: 50%;
+        }
         .react-datepicker__day--selected{
             background: rgb(255,130,75);
             background: linear-gradient(90deg, rgba(255,130,75,1) 0%, rgba(255,178,56,1) 100%);     
             color: #fff;
             border-radius: 50%;
         }
+        
     }
 `
 const FooterBox = styled('div')`
@@ -194,24 +199,27 @@ const Row = (title, content, must = false, notice) =>
 
 
 
+
 const Froms = ({ nextEvent }) => {
     const dispatch = useDispatch()
     const jsonData = useSelector(state => state)
     const [listData, setListData] = useState([])
 
-    const [currentStartDate, setCurrentStartDate] = useState("2023-01-01")
-    const [currentEndDate, setCurrentEndDate] = useState("2023-01-01")
+    const [currentStartDate, setCurrentStartDate] = useState(null)
+    const [currentEndDate, setCurrentEndDate] = useState(null)
     //const [currentIndex, setCurrentIndex] = useState(0)
     const [currentValue, setCurrentValue] = useState()
     const [currentMed, setCurrentMed] = useState(null)
     const [currentMg, setCurrentMg] = useState()
     const [currentKg, setCurrentKg] = useState()
     const [currentSex, setCurrentSex] = useState(null)
-    
-    const [chechKg, setChechKg] = useState(false)
-    const [chechMg, setChechMg] = useState(false)
-    const [chechValue, setChechValue] = useState(false)
     const [currentAge, setCurrentAge] = useState(undefined)
+    
+    const [chechKg, setCheckKg] = useState(false)
+    const [chechMg, setCheckMg] = useState(false)
+    const [chechValue, setCheckValue] = useState(false)    
+    const [checkStartDate, setCheckStartDate] = useState(null)
+    const [checkEndDate, setCheckEndDate] = useState(null)
     /*
     const [currentName, setCurrentName] = useState("")
     const [currentSex, setCurrentSex] = useState("")
@@ -224,8 +232,8 @@ const Froms = ({ nextEvent }) => {
             setListData(jsonData.jsonData)
             setCurrentMed(jsonData.jsonData[0].label)
             const _now = new Date()
-            setCurrentStartDate(formatDate(new Date()))
-            setCurrentEndDate(formatDate(new Date(Date.now()+(1000*60*60*24))))
+            //setCurrentStartDate(formatDate(new Date()))
+            //setCurrentEndDate(formatDate(new Date(Date.now()+(1000*60*60*24))))
 
             if(jsonData.basicData.patientAge){
                 setCurrentAge(jsonData.basicData.patientAge)
@@ -246,9 +254,11 @@ const Froms = ({ nextEvent }) => {
     const addItem = () => {
         //檢查項目
         let check = false
-        if(currentKg == null    ){ check = true; setChechKg(true)    }else{ setChechKg(false)}
-        if(currentMg == null    ){ check = true; setChechMg(true)    }else{ setChechMg(false)}
-        if(currentValue == null ){ check = true; setChechValue(true) }else{ setChechValue(false)}
+        if(currentKg == null    ){ check = true; setCheckKg(true)    }else{ setCheckKg(false)}
+        if(currentMg == null    ){ check = true; setCheckMg(true)    }else{ setCheckMg(false)}
+        if(currentValue == null ){ check = true; setCheckValue(true) }else{ setCheckValue(false)}
+        if(currentStartDate == null ){ check = true; setCheckStartDate(true) }else{ setCheckStartDate(false)}
+        if(currentEndDate == null ){ check = true; setCheckEndDate(true) }else{ setCheckEndDate(false)}
         if(check) return
 
 
@@ -269,8 +279,10 @@ const Froms = ({ nextEvent }) => {
                 endDate: currentEndDate,
                 med: currentMed,
                 mg: currentMg,
-                mgday: mgday.toFixed(2),
-                mgkgday: mgkgday.toFixed(2),
+                //mgday: mgday.toFixed(2),
+                mgday: Math.round(mgday * 100) / 100,
+                //mgkgday: mgkgday.toFixed(2),
+                mgkgday: Math.round(mgkgday * 100) / 100,
                 dayDuration: dayDuration
             }
         })
@@ -284,9 +296,7 @@ const Froms = ({ nextEvent }) => {
 
     const next = () => {
         nextEvent()
-    }
-
-
+    }    
 
     return (
         <RowBox>
@@ -337,6 +347,9 @@ const Froms = ({ nextEvent }) => {
                             colors: {
                                 ...theme.colors,
                                 primary: '#f6A934',
+                                primary75: '#f6A934',
+                                primary50: '#f6A934',
+                                primary25: '#ccc',
                             },
                         })}
                     />
@@ -383,7 +396,7 @@ const Froms = ({ nextEvent }) => {
             }
             {
                 Row(
-                    "病人體重(KG)",
+                    "病人體重(kg)",
                     <>
                         <input
                             type='number'
@@ -392,7 +405,7 @@ const Froms = ({ nextEvent }) => {
                             value={currentKg ? currentKg : ""}
                             onChange={
                                 event => {
-                                    setChechKg(false)
+                                    setCheckKg(false)
                                     setCurrentKg(event.target.value)
                                     const newBasicData = {
                                         ...jsonData.basicData,
@@ -414,40 +427,58 @@ const Froms = ({ nextEvent }) => {
                 Row(
                     "用藥起始時間",
                     <DatePicker
-                        selected={new Date(currentStartDate)}
+                        selected={currentStartDate? new Date(currentStartDate):null}
                         // selected={startDate}
-                        onChange={date => setCurrentStartDate(formatDate(date))}
-                        maxDate={new Date(currentEndDate)}
+                        onChange={date => {
+                            setCheckStartDate(false)
+                            setCurrentStartDate(formatDate(date))
+                        }}
+                        maxDate={
+                            currentEndDate?
+                            new Date(currentEndDate):
+                            formatDate(new Date())
+                        }
                         placeholderText="請選擇用藥起始時間"
                     />,
-                    true
+                    true,
+                    checkStartDate
                 )
             }
             {
                 Row(
                     "用藥結束時間",
                     <DatePicker
-                        selected={new Date(currentEndDate)}
-                        onChange={date => setCurrentEndDate(formatDate(date))}
-                        minDate={new Date(currentStartDate)}
+                        selected={currentEndDate? new Date(currentEndDate):null}
+                        onChange={date =>{
+                            setCheckEndDate(false)                            
+                            setCurrentEndDate(formatDate(date))
+                        }}
+                        minDate={
+                            currentStartDate?
+                            new Date(currentStartDate):                            
+                            new Date(Date.now()+(1000*60*60*24))
+                        }
                         placeholderText="請選擇用藥結束時間"
                     />,
-                    true
+                    true,
+                    checkEndDate
                 )
             }
             {
                 Row(
                     "藥品",
                     <Select
-                        placeholder='請選擇藥品'
-                       
+                        placeholder='請選擇藥品'                       
                         onChange={option => {
                             //console.log(option)
-                            setChechValue(false)
+                            setCheckValue(false)
+                            //option.value是拿來做選擇排序的 day才是真正的數值 
                             setCurrentValue(option.value)
                             setCurrentMed(option.label)
                         }}
                         options={listData}
+                        selectProps={currentMed}
+                        isOptionSelected={(option, selectValue) => selectValue.some(i => i === option)}
                         theme={(theme) => ({
                             ...theme,
                             borderRadius: 0,
@@ -455,6 +486,9 @@ const Froms = ({ nextEvent }) => {
                             colors: {
                                 ...theme.colors,
                                 primary: '#f6A934',
+                                primary75: '#f6A934',
+                                primary50: '#f6A934',
+                                primary25: '#ccc',
                             },
                         })}
                     />,
@@ -490,7 +524,7 @@ const Froms = ({ nextEvent }) => {
                         type='number'
                         onChange={
                             event => { 
-                                setChechMg(false)
+                                setCheckMg(false)
                                 setCurrentMg(event.target.value)
                             }
                         } />,

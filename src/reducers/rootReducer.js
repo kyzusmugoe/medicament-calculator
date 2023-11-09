@@ -1,26 +1,37 @@
-/*import LifeState from './fromReducers/life'
-
-const _life = LifeState
-console.log("life",_life)
-*/
-//import BasicInfo from './fromReducers/BasicInfo'
-/*
-const getInsurerID = () => {
-    const _url = new URL(document.location.href)
-    return _url.searchParams.get('insurer')
-}
-
-const getNowDate = () => {
-    const _d = new Date();
-    return {
-        year: _d.getFullYear() - 1911,
-        month: _d.getMonth() + 1,
-        date: _d.getDate()
+const jsData =[
+    {
+        "label": "Hydrocortisone",
+        "value": 0.25
+    },
+    {
+        "label": "Cortisone",
+        "value": 0.2
+    },
+    {
+        "label": "Prednisolone",
+        "value": 1
+    },
+    {
+        "label": "Triamcinolone",
+        "value": 1.25
+    },
+    {
+        "label": "Methylprednisolone",
+        "value": 1.25
+    },
+    {
+        "label": "Dexamethasone",
+        "value": 6.67
+    },
+    {
+        "label": "Betamethasone",
+        "value": 8.33
+    },
+    {
+        "label": "Fludrocortisone",
+        "value": 2.5
     }
-
-}
-*/
-
+]
 
 const basicData = {
     patientName:"",
@@ -32,7 +43,7 @@ const basicData = {
 const initState = {
     name:"Med",
     basicData:basicData,
-    jsonData:[],
+    jsonData:jsData,
     userRaw:[]
 }
 

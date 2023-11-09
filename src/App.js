@@ -11,6 +11,7 @@ import styled from 'styled-components';
 
 
 
+
 const MainBox = styled('div')`
     display: flex;
     flex-direction: column;
@@ -56,8 +57,10 @@ const MainBox = styled('div')`
             text-align: center;
             color:#F36633;
             width: 100%;
-            max-width: 600px;
+            max-width: 680px;
+            margin-bottom: 0;
         }
+        
         .n2{
             font-size: 12px;
             text-align: left;
@@ -74,22 +77,43 @@ const MainBox = styled('div')`
 const FooterBox = styled('div')`
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    margin-bottom: 100px;
-    max-width: 1400px;
-    @media screen and (max-width:830px){
-
-        max-width: 600px;
+    //width: calc(100% - 260px);
+    width:100%;
+    //margin-bottom: 100px;
+    margin-top: 50px;
+    padding-top: 50px;
+    //max-width: 1600px;
+    color:#fff;
+    border-top: 1px dotted #fff;
+    flex-wrap: wrap;
+    @media screen and (max-width:1200px){
+        //width: calc(100% - 120px);
+        //max-width: 600px;
         flex-direction: column;
         align-items: flex-start;
         
     }
     @media screen and (max-width:640px){
         font-size: 15px;
+        
+    }
+    /*
+    @media screen and (max-width:414px){
+        width: calc(100% - 60px);
         max-width: 275px;
     }
+    */
     div{
         margin-bottom: 30px;
+    }
+
+    .date{
+        width: 100%;
+        flex: 0 0 100%;
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
     }
 `
 const MyApp = () => {
@@ -99,12 +123,14 @@ const MyApp = () => {
     const [page, setPage] = useState("forms")
 
     useEffect(()=>{
+        /*
         ws.GetJsonData().then(res=>{
             dispatch({
                 type: "SET_JSON_DATA",
                 jsonData: res
             })
         })
+        */
         return
     },[])
     
@@ -115,13 +141,14 @@ const MyApp = () => {
             <MainBox>
                 <img className='main_logo' src="./assets/logo.png"/>
                 <div className='content'>
-                    <div className='title'>STEROID CALCULATOR</div>
+                    <div className='title'>STEROID CONVERTER</div>
                         <Froms
                             nextEvent={()=>{                                
                                 setPage("result")
                             }}
                         />                        
                     <p className='n1'>本工具僅供專業醫療人員參考，無法作為任何診斷與治療之建議或依據。本工具不具備任何儲存或傳輸資料功能，使用資料請遵守《個人資料保護法》之規定。</p>
+                    <p className='n1'>GSK 審核有效期限自 2023 年 10 月至 2025 年 9 月，審核期限過後，本公司不對文件內容負任何責任。</p>
                     <p className='n2'>
                         Reference:<br/>Nicolaides NC, et al. Glucocorticoid Therapy and Adrenal Suppression. Glucocorticoid Equivalencies. Available from:
                         <a href="https://www.ncbi.nlm.nih.gov/books/NBK279156/table/adrenal_glucocorticoid-therapy-and-adrenal-suppression.T./ (accessed in 2023.2)" target='_blank'>
@@ -129,19 +156,24 @@ const MyApp = () => {
                         </a>
                     </p>
                    
+                
+                    <FooterBox>
+                                    
+                        <div>
+                            ©2023 GSK 公司集團或其授權對象<br/>
+                            葛蘭素史克藥廠股份有限公司台灣分公司地址： 100 台北市忠孝⻄路⼀段 66 號 23 樓
+                        </div>
+                      
+                        <div className='date'>
+                            <span>
+                                NP-TW-NA-OGM-230001
+                            </span>
+                            <span>
+                                Date of preparation: Aug 2023
+                            </span>
+                        </div>
+                    </FooterBox>
                 </div>
-                <FooterBox>
-                                
-                    <div>
-                        ©2023 GSK 公司集團或其授權對象<br/>
-                        葛蘭素史克藥廠股份有限公司台灣分公司地址： 100 台北市忠孝西路一段 66 號 23 樓<br/>
-                        商標為 GSK 公司集團所有或授權使用
-                    </div>
-                    <div>
-                            NP-TW-OOO-OOOO-OOOOOO
-                    </div>
-                </FooterBox>
-               
             </MainBox>
             :
             <ResultPage

@@ -97,7 +97,11 @@ const ResTable =()=>{
                     <tr>
                         <td colSpan={3}>總共{totalDates}天</td>
                         <td colSpan={2}></td>
-                        <td colSpan={2}>總共劑量：{totalPrednisolnoe}</td>
+                        <td colSpan={2}>總共劑量：
+                        {
+                            //totalPrednisolnoe.toFixed(2)
+                            Math.round(totalPrednisolnoe * 100) / 100
+                        }</td>
                     </tr>
                 </tbody>
         </MyTable>
